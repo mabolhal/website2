@@ -1,0 +1,11 @@
+<script>
+// Set time-of-day theme immediately to avoid flash
+(function() {
+  const h = new Date().getHours();
+  let theme = 'night';
+  if (h >= 5 && h < 10) theme = 'sunrise';
+  else if (h >= 10 && h < 16) theme = 'noon';
+  else if (h >= 16 && h < 20) theme = 'sunset';
+  document.documentElement.dataset.theme = theme;
+})();
+</script>

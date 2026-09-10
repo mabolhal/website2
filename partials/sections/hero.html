@@ -1,0 +1,24 @@
+<section class="hero">
+<div class="hero-viz" aria-hidden="true">
+  <div class="stats-section__controls hero-viz__controls">
+    <div class="time-of-day-select">
+      <button type="button" class="time-of-day-select__trigger" data-value="sunset" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="time-of-day-select-icon" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <g class="time-of-day-select-icon__sun-group">
+            <circle cx="10" cy="10" r="4.25"></circle>
+            <path d="M16.5 10H19"/><path d="M14.6 14.6L16.36 16.36"/>
+            <path d="M10 16.5V19"/><path d="M5.4 14.6L3.64 16.36"/>
+            <path d="M3.5 10H1"/><path d="M5.4 5.4L3.64 3.64"/>
+            <path d="M10 3.5V1"/><path d="M16.36 3.64L14.6 5.4"/>
+          </g>
+          <path class="time-of-day-select-icon__moon" d="M8.84 4.2C8.41 5.57 8.02 8.08 9.97 10.03C11.92 11.98 14.43 11.58 15.8 11.15C15.27 13.87 12.87 15.92 10 15.92C6.73 15.92 4.08 13.27 4.08 10C4.08 7.13 6.13 4.73 8.84 4.2Z"></path>
+        </svg>
+        <span class="time-of-day-select__value">SUNSET</span>
+      </button>
+      <ul class="time-of-day-select__list" role="listbox" tabindex="-1"></ul>
+    </div>
+  </div>
+  <div class="data-viz"><canvas class="data-viz__canvas"></canvas></div>
+</div>
+  {{hero}}
+</section>

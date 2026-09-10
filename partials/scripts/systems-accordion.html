@@ -1,0 +1,14 @@
+<script>
+/* ===== SYSTEMS ACCORDION ===== */
+(function(){
+  const list = document.getElementById('systems-list');
+  if (!list) return;
+  list.querySelectorAll('.sys').forEach(el => {
+    el.addEventListener('click', () => {
+      const body = el.querySelector('.sys-body');
+      const open = el.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+    });
+  });
+})();
+</script>

@@ -1,0 +1,49 @@
+<script>
+/* ===== PIXEL WAVE FIELD (quiet) ===== */
+(function(){
+  const c = document.getElementById('art-canvas');
+  const ctx = c.getContext('2d');
+  let t = 0, gap = 30, cols, rows;
+  const mouse = {x:-9999, y:-9999};
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    c.width = innerWidth * devicePixelRatio;
+    c.height = innerHeight * devicePixelRatio;
+    c.style.width = innerWidth + 'px';
+    c.style.height = innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    cols = Math.ceil(innerWidth / gap) + 1;
+    rows = Math.ceil(innerHeight / gap) + 1;
+  }
+  resize();
+  addEventListener('resize', resize);
+  addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  function frame(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    t += 0.015;
+    for(let i=0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        const x = i*gap, y = j*gap;
+        const w = Math.sin(x*0.011 + t) * Math.cos(y*0.009 - t*0.6)
+                + Math.sin((x+y)*0.005 + t*0.4);
+        const v = (w + 2) / 4;
+        const dx = x - mouse.x, dy = y - mouse.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        const ripple = Math.max(0, 1 - d/200);
+        const s = v*1.6 + ripple*3.2;
+        if(s < 0.75) continue;
+        const size = Math.min(s, 4);
+        const a = Math.min(0.04 + v*0.16 + ripple*0.35, 0.45);
+        const hue = 185 + v*70;
+        ctx.fillStyle = 'hsla(' + hue + ',45%,' + (40 + ripple*15) + '%,' + a + ')';
+        ctx.fillRect(x - size/2, y - size/2, size, size);
+      }
+    }
+  }
+  if(reduceMotion){ frame(); }
+  else { (function loop(){ frame(); requestAnimationFrame(loop); })(); }
+})();
+</script>

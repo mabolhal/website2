@@ -1,0 +1,128 @@
+{
+  "person": {
+    "name": "Mahyar Abolhallaj",
+    "title": "Platform & Data Engineer",
+    "logo": "MA",
+    "logoYear": "26",
+    "tagline": "building reliable data platforms that turn complexity into clarity.",
+    "location": "Platform Engineering",
+    "email": "mahyar.hallaj@gmail.com",
+    "footer": "© 2026"
+  },
+  "hero": {
+    "eyebrow": "PLATFORMS · DATA · INFRASTRUCTURE",
+    "heading": "MAHYAR",
+    "subheading": "ABOLHALLAJ",
+    "scrollText": "SCROLL TO EXPLORE ↓"
+  },
+  "sections": {
+    "systems": {
+      "title": "01 — SELECTED SYSTEMS",
+      "subtitle": "PROBLEM · SOLUTION · IMPACT",
+      "items": [
+        {
+          "name": "CUSTOM FINANCIAL ANALYSIS SOLUTION",
+          "tag": "CUSTOM DATA SOLUTIONS",
+          "description": "Software Solution to simply output financial analysis reports with custom functions to compare together periods of financial spending.",
+          "detail": "Used to make financial decisions and provide clarity based on transaction data in csv files.",
+          "chips": ["Python", "HTML / CSS"],
+          "link": "https://www.mahy.dev/"
+        },
+        {
+          "name": "ULTIMATE SHOPPING",
+          "tag": "AI / SCRAPING",
+          "description": "Automated scripting that pulls information from the Flipp application, via the weekly retail fliers, and stores the deals into a CSV.",
+          "detail": "AI is a great tool to analyze information, thus we can find killer deals that are in the brochures this week.",
+          "chips": ["Python", "CSV", "Selenium"]
+        },
+        {
+          "name": "FINANCIAL DATA PIPELINE",
+          "tag": "DATA ENGINEERING",
+          "description": "A fault-tolerant ETL pipeline that processes millions of financial transactions daily with 99.99% reliability and end-to-end encryption.",
+          "detail": "Replaced fragile cron-based jobs with an event-driven architecture featuring automatic retries, dead-letter queues, and data lineage tracking. Reduced manual intervention from 8+ hours per week to near-zero.",
+          "chips": ["Airflow", "Python", "PostgreSQL", "Docker", "Redis", "Prometheus"]
+        },
+        {
+          "name": "STM INTERACTIVE MAP",
+          "tag": "WEB APP / TRANSIT",
+          "description": "An interactive transit map for exploring Montreal's STM routes and discovering how to connect across the city.",
+          "detail": "Built a small web application with HTML, CSS, and Python, using maps and shapes from the STM website to make the city's transit network easier to explore and understand.",
+          "chips": ["HTML / CSS", "Python", "Maps"]
+        },
+        {
+          "name": "STREAMLINED CONTENT UPLOADER",
+          "tag": "FACEBOOK / YOUTUBE / TIKTOK",
+          "description": "Social media outlets provide API Endpoints to push content (except Tiktok) and we can leverage these to streamline content creation.",
+          "detail": "Scripting that pushes a video, with the option of content modification to have unique fingerprint, to all platforms. For Tiktok, a selenium instance is initiated to upload the video manually.",
+          "chips": ["Python", "API", "Selenium", "Chromium"]
+        }
+      ]
+    },
+    "approach": {
+      "title": "02 — THE WAY I BUILD",
+      "steps": [
+        {
+          "number": "01",
+          "title": "START WITH THE BUSINESS PROBLEM",
+          "description": "I never reach for a technology before understanding the actual need. The best architecture solves the right problem."
+        },
+        {
+          "number": "02",
+          "title": "DESIGN FOR EVOLUTION",
+          "description": "Software that can't change is software that fails. I build for flexibility, making the hard parts replaceable."
+        },
+        {
+          "number": "03",
+          "title": "SIMPLIFY RELENTLESSLY",
+          "description": "Every line of code is a liability. I remove unnecessary dependencies, abstractions, and complexity at every step."
+        },
+        {
+          "number": "04",
+          "title": "BUILD RELIABILITY IN, NOT ON",
+          "description": "I treat observability, testing, and failure recovery as first-class features, not afterthoughts."
+        }
+      ]
+    },
+    "stack": {
+      "title": "03 — ENGINEERING STACK",
+      "skills": [
+        { "category": "PROGRAMMING", "name": "Python (FastAPI, Pandas)" },
+        { "category": "PROGRAMMING", "name": "SQL (PostgreSQL, etc.)" },
+        { "category": "PROGRAMMING", "name": "TypeScript / Node.js" },
+        { "category": "PROGRAMMING", "name": "HTML / CSS" },
+        { "category": "DATA PLATFORMS", "name": "Airflow · dbt" },
+        { "category": "DATA PLATFORMS", "name": "Spark · Beam · Kafka · Flink" },
+        { "category": "DATA PLATFORMS", "name": "BigQuery · Databricks · Redshift" },
+        { "category": "CLOUD", "name": "GCP · Databricks · Azure · AWS (EC2, Lambda, RDS, S3)" },
+        { "category": "CLOUD", "name": "Terraform · Pulumi" },
+        { "category": "CLOUD", "name": "Docker · Kubernetes · ECS" },
+        { "category": "OBSERVABILITY", "name": "Prometheus · Grafana · Datadog" },
+        { "category": "CI/CD", "name": "Jenkins · Terraform · GitHub Actions · GitLab CI" },
+        { "category": "ARCHITECTURE", "name": "Event-Driven · Data Mesh · Microservices" }
+      ]
+    },
+    "about": {
+      "title": "04 — ABOUT",
+      "heading": "BUILDING SYSTEMS",
+      "subheading": "THAT PEOPLE LOVE.",
+      "bio": [
+        "I started out in school as a chemical engineer, and eventually got into data. I learned that systems are only as good as their operators—and that reliability is a design choice, not a side effect.",
+        "I transitioned to software engineering in 2019, drawn by the challenge of building systems at scale. Today, I work at the intersection of data, backend, and cloud infrastructure—designing platforms that make data accessible, trustworthy, and impactful.",
+        "I believe the best engineers don't just write code; they understand the business context, simplify the problem, and build solutions that outlast their own tenure."
+      ],
+      "timeline": [
+        { "year": "2012", "detail": "Chemical Engineering (University of Waterloo)" },
+        { "year": "2019", "detail": "First Job in Tech as a Data Analyst" },
+        { "year": "2020", "detail": "Data Engineer" },
+        { "year": "2023", "detail": "Upgrading old applications to modern Full stack systems" },
+        { "year": "NOW", "detail": "Data focused Software Engineer" }
+      ]
+    },
+    "contact": {
+      "eyebrow": "OPEN TO NEW OPPORTUNITIES",
+      "heading": "LET'S BUILD",
+      "subheading": "SOMETHING USEFUL.",
+      "buttonText": "email ↗"
+    }
+  }
+}

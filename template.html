@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="Portfolio page generated from config.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<style>
+/* ============ MINIMAL BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f4f4f1; --ink:#141414; --dim:#8a8a84; --line:#e2e2dc;
+  --cyan:#0e9aa7; --violet:#7c6bd6;
+  --circuit-opacity:.09; --circuit-blend:multiply;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+  --mono:'JetBrains Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Roboto Mono',Menlo,Consolas,monospace;
+}
+
+/* ============ TIME-OF-DAY THEMES ============
+   Set on <html data-theme="..."> by the hero sky-viz script.
+   Every color on the page reads from these variables, so switching
+   the theme re-colors the nav, sections, borders, chips, footer, etc. */
+html[data-theme="sunrise"]{
+  --bg:#f7efe4; --ink:#241a12; --dim:#a08b73; --line:#ecdcc7;
+  --cyan:#e2794f; --violet:#d9a441;
+  --circuit-opacity:.08; --circuit-blend:multiply;
+}
+html[data-theme="noon"]{
+  --bg:#f4f4f1; --ink:#141414; --dim:#8a8a84; --line:#e2e2dc;
+  --cyan:#0e9aa7; --violet:#7c6bd6;
+  --circuit-opacity:.09; --circuit-blend:multiply;
+}
+html[data-theme="sunset"]{
+  --bg:#f8ebe0; --ink:#2c1d14; --dim:#a3806a; --line:#eed7c4;
+  --cyan:#e2794a; --violet:#b6688f;
+  --circuit-opacity:.08; --circuit-blend:multiply;
+}
+html[data-theme="night"]{
+  --bg:#0d0f1a; --ink:#eef0f6; --dim:#8b93b3; --line:#242a44;
+  --cyan:#7fd8e0; --violet:#a89bef;
+  --circuit-opacity:.16; --circuit-blend:screen;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px; line-height:1.65;
+  overflow-x:hidden;
+  font-weight:400;
+  transition:background-color .9s ease, color .9s ease;
+}
+/* smooth theme transition for everything that borrows these variables */
+*, *::before, *::after{
+  transition-property:background-color, border-color, color, opacity, fill, stroke, stop-color;
+  transition-duration:.7s;
+  transition-timing-function:ease;
+}
+::selection{background:var(--ink); color:var(--bg)}
+a{color:inherit; text-decoration:none}
+
+/* ============ FORMATION ANIMATIONS ============ */
+/* Elements start invisible and scattered */
+.hero .eyebrow,
+.hero h1,
+.hero h1 em,
+.hero .lead,
+.hero .hero-meta,
+.hero .scroll,
+.nav,
+.section,
+footer {
+  opacity: 0;
+}
+
+/* Name slides in from left */
+.hero h1 {
+  animation: slideFromLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+/* Subtitle slides in from right */
+.hero h1 em {
+  animation: slideFromRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+/* Eyebrow fades in */
+.hero .eyebrow {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Lead text fades in from bottom */
+.hero .lead {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* Hero meta fades in */
+.hero .hero-meta {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* Scroll link fades in */
+.hero .scroll {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Nav fades in */
+.nav {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.05s;
+}
+
+/* Sections stagger in from bottom */
+.section {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+#systems { animation-delay: 0.3s; }
+#approach { animation-delay: 0.4s; }
+#stack { animation-delay: 0.5s; }
+#about { animation-delay: 0.6s; }
+.contact { animation-delay: 0.7s; }
+
+footer {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ ART LAYER (quiet) ============ */
+#art-canvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.55}
+.circuit-overlay{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:var(--circuit-opacity); mix-blend-mode:var(--circuit-blend)}
+.trace-a{stop-color:var(--cyan)}
+.trace-b{stop-color:var(--violet)}
+.noise{
+  position:fixed; inset:0; z-index:3; pointer-events:none; opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.nav, main, footer{position:relative; z-index:2}
+
+/* ============ NAV ============ */
+.nav{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:26px 5vw;
+  font-family:var(--mono);
+}
+.logo{font-size:13px; letter-spacing:.14em; font-weight:700}
+.logo span{color:var(--dim)}
+.nav nav{display:flex; gap:26px}
+.nav nav a{font-size:10px; letter-spacing:.2em; color:var(--dim); transition:color .2s; font-weight:500}
+.nav nav a:hover{color:var(--ink)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:82vh; display:flex; flex-direction:column;
+  justify-content:center; padding:6vh 5vw 3vh; position:relative;
+}
+.eyebrow{
+  display:flex; align-items:center; gap:10px;
+  font-size:10px; letter-spacing:.3em; color:var(--dim); margin-bottom:4vh;
+  font-family:var(--mono);
+  font-weight:500;
+}
+.pulse{
+  width:7px; height:7px; border-radius:50%; background:var(--cyan);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{50%{opacity:.2}}
+.hero h1{
+  font-size:clamp(42px, 7vw, 104px); line-height:.95; font-weight:800;
+  letter-spacing:-.03em; margin-bottom:6vh;
+  font-family:var(--sans);
+}
+.hero h1 em{font-style:italic; font-weight:300}
+.hero-bottom{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-top:2vh}
+.lead{position:relative; top:-5vh; font-size:16px; color:var(--ink); line-height:1.7; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
+.lead strong{color:var(--ink); font-weight:600}
+.hero-meta{
+  display:flex; flex-direction:column; gap:6px;
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim); text-align:right; margin-left:auto;
+  font-weight:400;
+}
+.hero-meta span:first-child{color:var(--ink)}
+.scroll{
+  position:relative; margin-top:8vh; 
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim); opacity:.7;
+  align-self:flex-start; font-weight:500;
+}
+
+/* ============ SECTIONS ============ */
+.section{padding:14vh 5vw; border-top:1px solid var(--line)}
+.section-head{
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.26em; color:var(--dim); margin-bottom:7vh;
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-weight:500;
+}
+.hint{
+  margin-top:5vh; 
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.26em; color:var(--dim); opacity:.6;
+  font-weight:400;
+}
+
+/* systems — quiet rows */
+.sys{border-top:1px solid var(--line); cursor:pointer}
+.sys:last-child{border-bottom:1px solid var(--line)}
+.sys-head{display:flex; align-items:baseline; gap:22px; padding:22px 2px}
+.sys-head .idx{
+  font-family:var(--mono);
+  color:var(--dim); font-size:11px; font-weight:400;
+}
+.sys-head h3{
+  flex:1; 
+  font-family:var(--sans);
+  font-size:clamp(16px,2.2vw,22px); font-weight:600; letter-spacing:.01em; 
+  transition:color .2s;
+}
+.sys:hover .sys-head h3{color:var(--cyan)}
+.sys-head .tag{
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.2em; color:var(--dim); font-weight:500;
+}
+.sys-head .plus{color:var(--dim); font-weight:400; transition:transform .3s}
+.sys.open .plus{transform:rotate(45deg)}
+.sys-body{max-height:0; overflow:hidden; transition:max-height .45s ease}
+.sys-body-in{padding:0 2px 26px; color:var(--dim); max-width:62ch}
+.sys-body-in p{margin-bottom:12px; font-weight:400; line-height:1.7}
+.sys-body-in .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
+.chip{
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.14em; padding:4px 9px; 
+  border:1px solid var(--line); color:var(--dim); font-weight:500;
+}
+
+/* process */
+.process{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:5vw}
+.process small{
+  font-family:var(--mono);
+  color:var(--dim); font-size:10px; letter-spacing:.2em; font-weight:500;
+}
+.process strong{
+  display:block; 
+  font-family:var(--sans);
+  font-size:16px; margin:10px 0 8px; font-weight:600;
+  letter-spacing:-.01em;
+}
+.process p{
+  color:var(--dim); 
+  font-family:var(--sans);
+  font-size:14px; max-width:30ch; line-height:1.6; font-weight:400;
+}
+
+/* skills — plain word grid */
+.skill-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:14px 4vw}
+.skill{
+  font-family:var(--sans);
+  font-size:14px; padding-bottom:10px; border-bottom:1px solid var(--line);
+  font-weight:500;
+}
+.skill small{
+  display:block; 
+  font-family:var(--mono);
+  color:var(--dim); font-size:9px; letter-spacing:.2em; margin-bottom:4px;
+  font-weight:500;
+}
+
+/* about */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:start}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about h2, .contact h2{
+  font-family:var(--sans);
+  font-size:clamp(30px,4.4vw,56px); line-height:1.05; letter-spacing:-.02em; 
+  font-weight:800;
+}
+.about h2 em, .contact h2 em{font-style:italic; font-weight:300}
+.about p{
+  color:var(--dim); 
+  font-family:var(--sans);
+  font-size:15px; margin-bottom:16px; max-width:none; line-height:1.7;
+  font-weight:400;
+}
+.timeline{
+  display:flex; align-items:center; flex-wrap:wrap; gap:16px;
+  margin-top:5vh;
+  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  font-family:var(--mono);
+  font-size:12px; letter-spacing:.2em; color:var(--dim);
+  font-weight:600;
+  padding:24px 5vw 48px; box-sizing:border-box;
+  border-top:1px solid var(--line);
+}
+.timeline i{flex:1; height:1px; background:var(--line); min-width:24px}
+.timeline span{position:relative; padding:4px 2px; cursor:default; transition-property:color}
+.timeline span:hover, .timeline span:focus-visible{color:var(--ink); outline:none}
+/* text revealed under the year on hover/focus — set via data-detail="..." on each span */
+.timeline span[data-detail]::after{
+  content:attr(data-detail);
+  position:absolute; top:100%; left:50%; transform:translate(-50%,2px);
+  width:max-content; max-width:220px;
+  font-family:var(--sans); font-size:11px; letter-spacing:0; font-weight:400; line-height:1.5;
+  color:var(--dim); background:var(--bg); border:1px solid var(--line);
+  padding:9px 11px; text-align:left;
+  opacity:0; pointer-events:none; z-index:4;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.timeline span[data-detail]:hover::after,
+.timeline span[data-detail]:focus-visible::after{
+  opacity:1; transform:translate(-50%,10px);
+}
+.timeline span[data-detail]:first-child::after{left:0; transform:translate(0,2px)}
+.timeline span[data-detail]:last-child::after{left:auto; right:0; transform:translate(0,2px)}
+.timeline span[data-detail]:first-child:hover::after,
+.timeline span[data-detail]:first-child:focus-visible::after,
+.timeline span[data-detail]:last-child:hover::after,
+.timeline span[data-detail]:last-child:focus-visible::after{transform:translate(0,10px)}
+@media(max-width:640px){
+  .timeline{gap:10px; font-size:10px; padding:20px 6vw 42px}
+  .timeline i{min-width:12px}
+  .timeline span[data-detail]::after{left:0; transform:translate(0,2px); max-width:65vw}
+  .timeline span[data-detail]:hover::after,
+  .timeline span[data-detail]:focus-visible::after{transform:translate(0,10px)}
+}
+
+/* contact */
+.contact{padding:18vh 5vw}
+.contact .eyebrow{
+  justify-content:flex-start;
+  font-family:var(--mono);
+}
+.contact h2{margin:3vh 0 7vh}
+.contact-row{
+  display:flex; justify-content:space-between; align-items:center; 
+  flex-wrap:wrap; gap:14px; 
+  border-top:1px solid var(--line); padding-top:24px;
+}
+.contact-row a{
+  font-family:var(--sans);
+  font-size:clamp(18px,2.6vw,30px); font-weight:600;
+  letter-spacing:-.01em;
+}
+.contact-row a:hover{color:var(--cyan)}
+.contact-row span{
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim);
+  font-weight:500;
+}
+
+footer{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  padding:24px 5vw; 
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.2em; color:var(--dim);
+  border-top:1px solid var(--line);
+  font-weight:500;
+}
+
+/* ============ HERO SKY VIZ (stripe-style) ============ */
+.hero-viz{position:absolute; inset:0; z-index:0; overflow:hidden}
+.hero-viz .data-viz{position:absolute; inset:0}
+.hero-viz canvas{display:block; width:100%; height:100%}
+.hero-viz__controls{position:absolute; top:0; right:0; z-index:2}
+.hero > *:not(.hero-viz){position:relative; z-index:1}
+
+.time-of-day-select{position:relative; font-size:10px; letter-spacing:.2em}
+.time-of-day-select__trigger{
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); background:transparent; cursor:pointer;
+  border:1px solid var(--line); padding:7px 12px;
+  transition:color .2s, border-color .2s;
+  font-weight:500;
+}
+.time-of-day-select__trigger:hover{color:var(--ink); border-color:var(--dim)}
+.time-of-day-select__value{color:var(--ink)}
+.time-of-day-select__trigger svg{width:15px; height:15px; overflow:visible}
+.time-of-day-select-icon__sun-group,
+.time-of-day-select-icon__moon{transition:opacity .6s}
+.time-of-day-select-icon__sun-group{opacity:1}
+.time-of-day-select-icon__moon{opacity:.2}
+.time-of-day-select__list{
+  position:absolute; top:calc(100% + 6px); right:0; min-width:130px;
+  list-style:none; background:var(--bg); border:1px solid var(--line);
+  padding:4px 0; display:none; z-index:5;
+}
+.time-of-day-select__list.open{display:block}
+.time-of-day-select__list li{
+  padding:8px 14px; cursor:pointer; color:var(--dim);
+  font-family:var(--mono);
+  text-transform:uppercase; display:flex; justify-content:space-between; gap:12px;
+  font-size:10px; font-weight:500;
+}
+.time-of-day-select__list li:hover{color:var(--ink); background:rgba(0,0,0,.03)}
+.time-of-day-select__list li[aria-selected="true"]{color:var(--ink)}
+.time-of-day-select__list li[aria-selected="true"]::after{content:"●"; font-size:7px; align-self:center; color:var(--cyan)}
+
+/* hero text color now comes straight from the theme (--ink/--dim/--cyan) */
+.hero{transition:color .9s}
+</style>
+
+
+</head>
+<body>
+<script>
+// Set time-of-day theme immediately to avoid flash
+(function() {
+  const h = new Date().getHours();
+  let theme = 'night';
+  if (h >= 5 && h < 10) theme = 'sunrise';
+  else if (h >= 10 && h < 16) theme = 'noon';
+  else if (h >= 16 && h < 20) theme = 'sunset';
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+
+
+<svg class="circuit-overlay" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="trace" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" class="trace-a"/><stop offset="1" class="trace-b"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#trace)" stroke-width="1">
+    <path d="M-20 120 H220 V300 H420 V180 H640"/>
+    <path d="M1220 90 H960 V260 H800 V420 H980"/>
+    <path d="M-20 640 H180 V520 H380 V680 H560"/>
+    <path d="M1220 700 H1000 V560 H840"/>
+    <path d="M300 -20 V140 H480"/>
+    <path d="M900 820 V640 H1080"/>
+  </g>
+  <g fill="#0e9aa7">
+    <circle cx="220" cy="120" r="3"/><circle cx="420" cy="300" r="3"/>
+    <circle cx="640" cy="180" r="3"/><circle cx="960" cy="90" r="3"/>
+    <circle cx="800" cy="260" r="3"/><circle cx="980" cy="420" r="3"/>
+    <circle cx="180" cy="640" r="3"/><circle cx="380" cy="520" r="3"/>
+    <circle cx="560" cy="680" r="3"/><circle cx="1000" cy="700" r="3"/>
+    <circle cx="840" cy="560" r="3"/><circle cx="300" cy="140" r="3"/>
+    <circle cx="480" cy="140" r="3"/><circle cx="900" cy="640" r="3"/>
+  </g>
+</svg>
+<canvas id="art-canvas"></canvas>
+<div class="noise"></div>
+
+<header class="nav">
+  {{nav}}
+</header>
+
+
+<main>
+<section class="hero">
+<div class="hero-viz" aria-hidden="true">
+  <div class="stats-section__controls hero-viz__controls">
+    <div class="time-of-day-select">
+      <button type="button" class="time-of-day-select__trigger" data-value="sunset" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="time-of-day-select-icon" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <g class="time-of-day-select-icon__sun-group">
+            <circle cx="10" cy="10" r="4.25"></circle>
+            <path d="M16.5 10H19"/><path d="M14.6 14.6L16.36 16.36"/>
+            <path d="M10 16.5V19"/><path d="M5.4 14.6L3.64 16.36"/>
+            <path d="M3.5 10H1"/><path d="M5.4 5.4L3.64 3.64"/>
+            <path d="M10 3.5V1"/><path d="M16.36 3.64L14.6 5.4"/>
+          </g>
+          <path class="time-of-day-select-icon__moon" d="M8.84 4.2C8.41 5.57 8.02 8.08 9.97 10.03C11.92 11.98 14.43 11.58 15.8 11.15C15.27 13.87 12.87 15.92 10 15.92C6.73 15.92 4.08 13.27 4.08 10C4.08 7.13 6.13 4.73 8.84 4.2Z"></path>
+        </svg>
+        <span class="time-of-day-select__value">SUNSET</span>
+      </button>
+      <ul class="time-of-day-select__list" role="listbox" tabindex="-1"></ul>
+    </div>
+  </div>
+  <div class="data-viz"><canvas class="data-viz__canvas"></canvas></div>
+</div>
+  {{hero}}
+</section>
+
+<section id="systems" class="section systems">
+  <div class="section-head"><span>{{sections.systems.title}}</span><span>{{sections.systems.subtitle}}</span></div>
+  {{systems}}
+  <p class="hint">CLICK A SYSTEM TO EXPAND</p>
+</section>
+
+<section id="approach" class="section approach">
+  <div class="section-head"><span>{{sections.approach.title}}</span></div>
+  {{approach}}
+</section>
+
+<section id="stack" class="section stack">
+  <div class="section-head"><span>{{sections.stack.title}}</span></div>
+  {{stack}}
+</section>
+
+<section id="about" class="section about">
+  <div class="section-head"><span>{{sections.about.title}}</span></div>
+  {{about}}
+  <div class="timeline">{{timeline}}</div>
+</section>
+
+<section class="contact">
+  {{contact}}
+</section>
+
+</main>
+<footer>{{footer}}</footer>
+
+
+<script>
+/* ===== PIXEL WAVE FIELD (quiet) ===== */
+(function(){
+  const c = document.getElementById('art-canvas');
+  const ctx = c.getContext('2d');
+  let t = 0, gap = 30, cols, rows;
+  const mouse = {x:-9999, y:-9999};
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    c.width = innerWidth * devicePixelRatio;
+    c.height = innerHeight * devicePixelRatio;
+    c.style.width = innerWidth + 'px';
+    c.style.height = innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    cols = Math.ceil(innerWidth / gap) + 1;
+    rows = Math.ceil(innerHeight / gap) + 1;
+  }
+  resize();
+  addEventListener('resize', resize);
+  addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  function frame(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    t += 0.015;
+    for(let i=0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        const x = i*gap, y = j*gap;
+        const w = Math.sin(x*0.011 + t) * Math.cos(y*0.009 - t*0.6)
+                + Math.sin((x+y)*0.005 + t*0.4);
+        const v = (w + 2) / 4;
+        const dx = x - mouse.x, dy = y - mouse.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        const ripple = Math.max(0, 1 - d/200);
+        const s = v*1.6 + ripple*3.2;
+        if(s < 0.75) continue;
+        const size = Math.min(s, 4);
+        const a = Math.min(0.04 + v*0.16 + ripple*0.35, 0.45);
+        const hue = 185 + v*70;
+        ctx.fillStyle = 'hsla(' + hue + ',45%,' + (40 + ripple*15) + '%,' + a + ')';
+        ctx.fillRect(x - size/2, y - size/2, size, size);
+      }
+    }
+  }
+  if(reduceMotion){ frame(); }
+  else { (function loop(){ frame(); requestAnimationFrame(loop); })(); }
+})();
+</script>
+
+<script>
+/* ===== SYSTEMS ACCORDION ===== */
+(function(){
+  const list = document.getElementById('systems-list');
+  if (!list) return;
+  list.querySelectorAll('.sys').forEach(el => {
+    el.addEventListener('click', () => {
+      const body = el.querySelector('.sys-body');
+      const open = el.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+    });
+  });
+})();
+</script>
+
+<script>
+/* ===== HERO SKY VIZ ===== */
+(function(){
+  const PHASES = {
+    sunrise:{label:'SUNRISE', t:.14, stars:0,
+      sky:[[255,209,176],[255,231,205],[244,244,241]], body:[255,138,76]},
+    noon:{label:'NOON', t:.50, stars:0,
+      sky:[[212,234,240],[234,242,243],[244,244,241]], body:[246,214,110]},
+    sunset:{label:'SUNSET', t:.88, stars:.06,
+      sky:[[240,155,110],[255,199,150],[244,233,224]], body:[255,104,58]},
+    night:{label:'NIGHT', t:.42, stars:1,
+      sky:[[12,15,30],[20,26,52],[38,44,76]], body:[228,232,246]}
+  };
+  const ORDER = ['sunrise','noon','sunset','night'];
+
+  const hero = document.querySelector('.hero');
+  const canvas = hero.querySelector('.data-viz__canvas');
+  const ctx = canvas.getContext('2d');
+  const trigger = hero.querySelector('.time-of-day-select__trigger');
+  const valueEl = hero.querySelector('.time-of-day-select__value');
+  const list = hero.querySelector('.time-of-day-select__list');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function phaseFromTime(){
+    const h = new Date().getHours();
+    if(h >= 5 && h < 10) return 'sunrise';
+    if(h >= 10 && h < 16) return 'noon';
+    if(h >= 16 && h < 20) return 'sunset';
+    return 'night';
+  }
+
+  // Set initial theme based on time of day
+  const initialPhase = phaseFromTime();
+  // Theme already set by the inline script, but keep for consistency
+  document.documentElement.dataset.theme = initialPhase;
+
+  let target = PHASES[initialPhase];
+  const state = { t:target.t, stars:target.stars,
+    sky:target.sky.map(c=>c.slice()), body:target.body.slice() };
+  function lerp(a,b,k){ return a + (b-a)*k; }
+
+  let stars = [];
+  function seedStars(){
+    stars = [];
+    for(let i=0;i<140;i++){
+      stars.push({x:Math.random(), y:Math.random()*0.62, r:Math.random()*1.2+.35,
+        p:Math.random()*Math.PI*2, s:0.5+Math.random()*2.2, tw:0.4+Math.random()*1.6, cross:Math.random()<0.15});
+    }
+  }
+  seedStars();
+
+  function resize(){
+    canvas.width = canvas.offsetWidth * devicePixelRatio;
+    canvas.height = canvas.offsetHeight * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  }
+  resize();
+  addEventListener('resize', resize);
+
+  function drawRays(bx,by,r,time,isNoon,isSunset){
+    const tt = time*0.001;
+    if(isNoon){
+      // --- NOON: steady rays emanating from sphere, slowly rotating, NO twinkle ---
+      const COUNT = 28;
+      ctx.save();
+      ctx.translate(bx,by);
+      ctx.rotate(tt*0.05); // slow steady rotation = movement
+      for(let i=0;i<COUNT;i++){
+        const isMajor = i%2===0;
+        const ang = (i/COUNT)*Math.PI*2;
+        const baseLen = isMajor ? r*3.6 : r*2.1;
+        const op = isMajor ? 0.32 : 0.14;
+        ctx.save();
+        ctx.rotate(ang);
+        const x0 = r*0.94;
+        const x1 = x0 + baseLen;
+        const grad = ctx.createLinearGradient(x0,0,x1,0);
+        grad.addColorStop(0, `rgba(255,252,210,${op})`);
+        grad.addColorStop(0.22, `rgba(255,240,130,${op*0.85})`);
+        grad.addColorStop(0.6, `rgba(246,214,110,${op*0.25})`);
+        grad.addColorStop(1, `rgba(246,214,110,0)`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = isMajor ? 1.15 : 0.65;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(x0, 0);
+        ctx.lineTo(x1, 0);
+        ctx.stroke();
+        ctx.restore();
+      }
+      const corona = ctx.createRadialGradient(0,0,r*0.9, 0,0,r*4.2);
+      corona.addColorStop(0, `rgba(255,250,185,0.16)`);
+      corona.addColorStop(0.35, `rgba(255,235,110,0.06)`);
+      corona.addColorStop(1, 'rgba(255,220,90,0)');
+      ctx.fillStyle = corona;
+      ctx.beginPath(); ctx.arc(0,0,r*4.2,0,Math.PI*2); ctx.fill();
+      ctx.restore();
+      return;
+    }
+    // sunrise / sunset quiet rays
+    const count = 10;
+    ctx.save();
+    ctx.translate(bx,by);
+    for(let i=0;i<count;i++){
+      const ang = (i/count)*Math.PI*2;
+      ctx.save(); ctx.rotate(ang);
+      ctx.strokeStyle = isSunset ? 'rgba(255,140,80,0.16)' : 'rgba(255,210,160,0.12)';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(r*1.05,0); ctx.lineTo(r*1.05 + r*1.6,0); ctx.stroke();
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function draw(time){
+    const W = canvas.offsetWidth, H = canvas.offsetHeight;
+    ctx.clearRect(0,0,W,H);
+
+    const g = ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0, 'rgb('+state.sky[0].map(Math.round).join(',')+')');
+    g.addColorStop(0.55, 'rgb('+state.sky[1].map(Math.round).join(',')+')');
+    g.addColorStop(1, 'rgb('+state.sky[2].map(Math.round).join(',')+')');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,W,H);
+
+    const x0 = W*0.06, x1 = W*0.94, cx = W/2;
+    const horizon = H*0.88, apex = H*0.16;
+    const waterTop = H*0.68;
+    const t = state.t;
+    const bx = x0 + (x1-x0)*t;
+    const by = horizon - Math.sin(Math.PI*Math.min(1,Math.max(0,t))) * (horizon - apex) * 0.94;
+    const isNight = target === PHASES.night;
+    const isNoon = target === PHASES.noon;
+    const isSunset = target === PHASES.sunset;
+    const r = Math.max(14, Math.min(W,H) * 0.035);
+
+    if(isSunset){
+      const tt = time*0.001;
+      const wg = ctx.createLinearGradient(0, waterTop, 0, H);
+      wg.addColorStop(0, 'rgba(68,52,84,0.85)');
+      wg.addColorStop(0.35, 'rgba(36,32,62,0.92)');
+      wg.addColorStop(1, 'rgba(18,20,42,1)');
+      ctx.fillStyle = wg;
+      ctx.fillRect(0, waterTop, W, H-waterTop);
+
+      const rg = ctx.createLinearGradient(0, waterTop, 0, H);
+      rg.addColorStop(0, 'rgba(255,160,95,0.45)');
+      rg.addColorStop(0.25, 'rgba(255,120,65,0.22)');
+      rg.addColorStop(0.6, 'rgba(255,100,60,0.08)');
+      rg.addColorStop(1, 'rgba(30,20,50,0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath();
+      ctx.moveTo(bx - r*1.4, waterTop);
+      ctx.lineTo(bx + r*1.4, waterTop);
+      ctx.lineTo(bx + r*0.5, H);
+      ctx.lineTo(bx - r*0.5, H);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.save();
+      for(let j=0;j<3;j++){
+        const layerOp = j===0 ? 0.28 : j===1 ? 0.18 : 0.12;
+        const amp = j===0 ? 5 : j===1 ? 8 : 11;
+        const speed = 0.8 + j*0.35;
+        const freq = 0.018 + j*0.008;
+        ctx.strokeStyle = `rgba(255,${170-j*10},${110+j*15},${layerOp})`;
+        ctx.lineWidth = j===0 ? 1.1 : 0.6;
+        for(let i=0;i<28;i++){
+          const yy = waterTop + (H-waterTop)*(0.06 + i/28*0.9);
+          const xOff = Math.sin(tt*speed + i*0.6 + j)*amp*1.2;
+          const w = W * (0.22 + (1-(yy-waterTop)/(H-waterTop))*0.55);
+          const cxWave = bx + xOff;
+          ctx.beginPath();
+          ctx.moveTo(cxWave - w/2, yy);
+          for(let x=-w/2; x<w/2; x+=12){
+            const wy = yy + Math.sin((x+tt*40)*freq + i)*1.4;
+            const wx = cxWave + x + Math.sin(x*0.08 + tt*1.5 + j)*1.5;
+            ctx.lineTo(wx, wy);
+          }
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      for(let k=0;k<55;k++){
+        const px = ((k*73 + tt*30 + Math.sin(k)*100) % (W*1.4)) - W*0.2;
+        const dx = (px - bx)/(W*0.42);
+        if(Math.abs(dx) > 1) continue;
+        const py = waterTop + (0.12 + (k%7)/7*0.82)*(H-waterTop) + Math.sin(tt*1.2+k)*3;
+        const blink = Math.pow(Math.max(0, Math.sin(tt*1.8 + k*1.1)), 3.5);
+        const a = (0.12 + blink*0.72)*(1-Math.abs(dx)*0.6);
+        if(a<0.02) continue;
+        ctx.fillStyle = `rgba(255,235,185,${a})`;
+        ctx.beginPath(); ctx.arc(px, py, 0.8 + blink*1.6, 0, Math.PI*2); ctx.fill();
+      }
+
+      ctx.strokeStyle = 'rgba(255,160,90,0.22)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, waterTop);
+      for(let x=0;x<W;x+=10){
+        ctx.lineTo(x, waterTop + Math.sin(x*0.02 + tt*2.2)*1.8 + Math.sin(x*0.01+tt)*1.2);
+      }
+      ctx.stroke();
+    }
+
+    if(state.stars > 0.01){
+      const tt = time*0.001;
+      for(const st of stars){
+        const tw = 0.5 + 0.5*Math.sin(tt*st.tw + st.p)*Math.sin(tt*st.s*0.7 + st.p);
+        const a = state.stars * (0.15 + 0.85*Math.max(0,tw));
+        if(a<0.02) continue;
+        const x = st.x*W, y = st.y*H;
+        const rr = st.r*(0.6 + tw*0.9);
+        ctx.fillStyle = `rgba(235,238,250,${a.toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(x,y,rr,0,Math.PI*2); ctx.fill();
+        if(st.cross && tw>0.75){
+          ctx.strokeStyle = `rgba(235,238,250,${(a*0.45).toFixed(3)})`;
+          ctx.lineWidth = 0.6;
+          const l = rr*2.6;
+          ctx.beginPath(); ctx.moveTo(x-l,y); ctx.lineTo(x+l,y); ctx.moveTo(x,y-l); ctx.lineTo(x,y+l); ctx.stroke();
+        }
+      }
+    }
+
+    if(!isSunset){
+      ctx.strokeStyle = 'rgba(120,120,115,0.18)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x0, horizon);
+      ctx.quadraticCurveTo(cx, horizon - (horizon-apex)*2, x1, horizon);
+      ctx.stroke();
+    }
+
+    if(isNight){
+      ctx.fillStyle = 'rgb('+state.body.map(Math.round).join(',')+')';
+      ctx.beginPath(); ctx.arc(bx,by,r,0,Math.PI*2); ctx.fill();
+      ctx.save(); ctx.globalCompositeOperation='destination-out';
+      ctx.beginPath(); ctx.arc(bx - r*0.45, by - r*0.18, r*0.86,0,Math.PI*2); ctx.fill(); ctx.restore();
+      const mg = ctx.createRadialGradient(bx,by,r, bx,by,r*3);
+      mg.addColorStop(0,'rgba(230,235,255,0.18)'); mg.addColorStop(1,'rgba(230,235,255,0)');
+      ctx.fillStyle = mg; ctx.beginPath(); ctx.arc(bx,by,r*3,0,Math.PI*2); ctx.fill();
+    } else {
+      drawRays(bx,by,r,time,isNoon,isSunset);
+      if(isNoon){
+        const glow = ctx.createRadialGradient(bx,by,r*0.8, bx,by,r*2.8);
+        glow.addColorStop(0,'rgba(255,240,160,0.28)');
+        glow.addColorStop(1,'rgba(255,240,160,0)');
+        ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(bx,by,r*2.8,0,Math.PI*2); ctx.fill();
+      } else if(isSunset){
+        const glow = ctx.createRadialGradient(bx,by,r*0.6, bx,by,r*4);
+        glow.addColorStop(0,'rgba(255,120,60,0.38)');
+        glow.addColorStop(1,'rgba(255,120,60,0)');
+        ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(bx,by,r*4,0,Math.PI*2); ctx.fill();
+      }
+      ctx.fillStyle = 'rgb('+state.body.map(Math.round).join(',')+')';
+      ctx.beginPath(); ctx.arc(bx,by,r,0,Math.PI*2); ctx.fill();
+      if(isNoon){
+        const hg = ctx.createRadialGradient(bx - r*0.25, by - r*0.25, r*0.1, bx,by,r);
+        hg.addColorStop(0,'rgba(255,255,220,0.9)');
+        hg.addColorStop(0.3,'rgba(255,255,220,0)');
+        ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(bx,by,r,0,Math.PI*2); ctx.fill();
+      }
+    }
+
+    const k = reduceMotion ? 1 : 0.038;
+    state.t = lerp(state.t, target.t, k);
+    state.stars = lerp(state.stars, target.stars, k);
+    for(let i=0;i<3;i++) for(let j=0;j<3;j++) state.sky[i][j] = lerp(state.sky[i][j], target.sky[i][j], k);
+    for(let j=0;j<3;j++) state.body[j] = lerp(state.body[j], target.body[j], k);
+  }
+
+  if(reduceMotion){ draw(0); }
+  else { (function loop(t){ draw(t||0); requestAnimationFrame(loop); })(0); }
+
+  ORDER.forEach(id => {
+    const li = document.createElement('li');
+    li.textContent = PHASES[id].label;
+    li.setAttribute('role','option');
+    li.dataset.value = id;
+    li.addEventListener('click', () => { select(id); closeList(); });
+    list.appendChild(li);
+  });
+
+  function select(id){
+    target = PHASES[id];
+    trigger.dataset.value = id;
+    valueEl.textContent = target.label;
+    trigger.setAttribute('aria-label', target.label + '. Choose a time of day');
+    document.documentElement.dataset.theme = id;
+    const sunGroup = trigger.querySelector('.time-of-day-select-icon__sun-group');
+    const moon = trigger.querySelector('.time-of-day-select-icon__moon');
+    if(sunGroup && moon){
+      sunGroup.style.opacity = id === 'night' ? '.2' : '1';
+      moon.style.opacity = id === 'night' ? '1' : '.2';
+    }
+    list.querySelectorAll('li').forEach(li =>
+      li.setAttribute('aria-selected', li.dataset.value === id ? 'true' : 'false'));
+  }
+  function openList(){ list.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function closeList(){ list.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+
+  trigger.addEventListener('click', () => { list.classList.contains('open') ? closeList() : openList(); });
+  trigger.addEventListener('keydown', e => {
+    const i = ORDER.indexOf(trigger.dataset.value);
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      const n = ORDER[(i + (e.key === 'ArrowDown' ? 1 : ORDER.length - 1)) % ORDER.length];
+      select(n);
+    } else if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); list.classList.contains('open') ? closeList() : openList(); }
+    else if(e.key === 'Escape'){ closeList(); }
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.time-of-day-select')) closeList(); });
+
+  // Set initial state for the UI
+  select(initialPhase);
+})();
+</script>
+
+</body>
+</html>

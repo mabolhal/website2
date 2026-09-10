@@ -1,0 +1,449 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="Portfolio page generated from config.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<style>
+/* ============ MINIMAL BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f4f4f1; --ink:#141414; --dim:#8a8a84; --line:#e2e2dc;
+  --cyan:#0e9aa7; --violet:#7c6bd6;
+  --circuit-opacity:.09; --circuit-blend:multiply;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+  --mono:'JetBrains Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Roboto Mono',Menlo,Consolas,monospace;
+}
+
+/* ============ TIME-OF-DAY THEMES ============
+   Set on <html data-theme="..."> by the hero sky-viz script.
+   Every color on the page reads from these variables, so switching
+   the theme re-colors the nav, sections, borders, chips, footer, etc. */
+html[data-theme="sunrise"]{
+  --bg:#f7efe4; --ink:#241a12; --dim:#a08b73; --line:#ecdcc7;
+  --cyan:#e2794f; --violet:#d9a441;
+  --circuit-opacity:.08; --circuit-blend:multiply;
+}
+html[data-theme="noon"]{
+  --bg:#f4f4f1; --ink:#141414; --dim:#8a8a84; --line:#e2e2dc;
+  --cyan:#0e9aa7; --violet:#7c6bd6;
+  --circuit-opacity:.09; --circuit-blend:multiply;
+}
+html[data-theme="sunset"]{
+  --bg:#f8ebe0; --ink:#2c1d14; --dim:#a3806a; --line:#eed7c4;
+  --cyan:#e2794a; --violet:#b6688f;
+  --circuit-opacity:.08; --circuit-blend:multiply;
+}
+html[data-theme="night"]{
+  --bg:#0d0f1a; --ink:#eef0f6; --dim:#8b93b3; --line:#242a44;
+  --cyan:#7fd8e0; --violet:#a89bef;
+  --circuit-opacity:.16; --circuit-blend:screen;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px; line-height:1.65;
+  overflow-x:hidden;
+  font-weight:400;
+  transition:background-color .9s ease, color .9s ease;
+}
+/* smooth theme transition for everything that borrows these variables */
+*, *::before, *::after{
+  transition-property:background-color, border-color, color, opacity, fill, stroke, stop-color;
+  transition-duration:.7s;
+  transition-timing-function:ease;
+}
+::selection{background:var(--ink); color:var(--bg)}
+a{color:inherit; text-decoration:none}
+
+/* ============ FORMATION ANIMATIONS ============ */
+/* Elements start invisible and scattered */
+.hero .eyebrow,
+.hero h1,
+.hero h1 em,
+.hero .lead,
+.hero .hero-meta,
+.hero .scroll,
+.nav,
+.section,
+footer {
+  opacity: 0;
+}
+
+/* Name slides in from left */
+.hero h1 {
+  animation: slideFromLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+/* Subtitle slides in from right */
+.hero h1 em {
+  animation: slideFromRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+/* Eyebrow fades in */
+.hero .eyebrow {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Lead text fades in from bottom */
+.hero .lead {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* Hero meta fades in */
+.hero .hero-meta {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* Scroll link fades in */
+.hero .scroll {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Nav fades in */
+.nav {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.05s;
+}
+
+/* Sections stagger in from bottom */
+.section {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+#systems { animation-delay: 0.3s; }
+#approach { animation-delay: 0.4s; }
+#stack { animation-delay: 0.5s; }
+#about { animation-delay: 0.6s; }
+.contact { animation-delay: 0.7s; }
+
+footer {
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ ART LAYER (quiet) ============ */
+#art-canvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.55}
+.circuit-overlay{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:var(--circuit-opacity); mix-blend-mode:var(--circuit-blend)}
+.trace-a{stop-color:var(--cyan)}
+.trace-b{stop-color:var(--violet)}
+.noise{
+  position:fixed; inset:0; z-index:3; pointer-events:none; opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.nav, main, footer{position:relative; z-index:2}
+
+/* ============ NAV ============ */
+.nav{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:26px 5vw;
+  font-family:var(--mono);
+}
+.logo{font-size:13px; letter-spacing:.14em; font-weight:700}
+.logo span{color:var(--dim)}
+.nav nav{display:flex; gap:26px}
+.nav nav a{font-size:10px; letter-spacing:.2em; color:var(--dim); transition:color .2s; font-weight:500}
+.nav nav a:hover{color:var(--ink)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:82vh; display:flex; flex-direction:column;
+  justify-content:center; padding:6vh 5vw 3vh; position:relative;
+}
+.eyebrow{
+  display:flex; align-items:center; gap:10px;
+  font-size:10px; letter-spacing:.3em; color:var(--dim); margin-bottom:4vh;
+  font-family:var(--mono);
+  font-weight:500;
+}
+.pulse{
+  width:7px; height:7px; border-radius:50%; background:var(--cyan);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{50%{opacity:.2}}
+.hero h1{
+  font-size:clamp(42px, 7vw, 104px); line-height:.95; font-weight:800;
+  letter-spacing:-.03em; margin-bottom:6vh;
+  font-family:var(--sans);
+}
+.hero h1 em{font-style:italic; font-weight:300}
+.hero-bottom{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-top:2vh}
+.lead{position:relative; top:-5vh; font-size:16px; color:var(--dim); line-height:1.7; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
+.lead strong{color:var(--ink); font-weight:600}
+.hero-meta{
+  display:flex; flex-direction:column; gap:6px;
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim); text-align:right; margin-left:auto;
+  font-weight:400;
+}
+.hero-meta span:first-child{color:var(--ink)}
+.scroll{
+  position:relative; margin-top:8vh; 
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim); opacity:.7;
+  align-self:flex-start; font-weight:500;
+}
+
+/* ============ SECTIONS ============ */
+.section{padding:14vh 5vw; border-top:1px solid var(--line)}
+.section-head{
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.26em; color:var(--dim); margin-bottom:7vh;
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-weight:500;
+}
+.hint{
+  margin-top:5vh; 
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.26em; color:var(--dim); opacity:.6;
+  font-weight:400;
+}
+
+/* systems — quiet rows */
+.sys{border-top:1px solid var(--line); cursor:pointer}
+.sys:last-child{border-bottom:1px solid var(--line)}
+.sys-head{display:flex; align-items:baseline; gap:22px; padding:22px 2px}
+.sys-head .idx{
+  font-family:var(--mono);
+  color:var(--dim); font-size:11px; font-weight:400;
+}
+.sys-head h3{
+  flex:1; 
+  font-family:var(--sans);
+  font-size:clamp(16px,2.2vw,22px); font-weight:600; letter-spacing:.01em; 
+  transition:color .2s;
+}
+.sys-link{color:inherit; font:inherit; letter-spacing:inherit; margin-left:8px}
+.sys:hover .sys-head h3{color:var(--cyan)}
+.sys-head .tag{
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.2em; color:var(--dim); font-weight:500;
+}
+.sys-head .plus{color:var(--dim); font-weight:400; transition:transform .3s}
+.sys.open .plus{transform:rotate(45deg)}
+.sys-body{max-height:0; overflow:hidden; transition:max-height .45s ease}
+.sys-body-in{padding:0 2px 26px; color:var(--dim); max-width:62ch}
+.sys-body-in p{margin-bottom:12px; font-weight:400; line-height:1.7}
+.sys-body-in .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
+.chip{
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.14em; padding:4px 9px; 
+  border:1px solid var(--line); color:var(--dim); font-weight:500;
+}
+
+/* process */
+.process{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:5vw}
+.process small{
+  font-family:var(--mono);
+  color:var(--dim); font-size:10px; letter-spacing:.2em; font-weight:500;
+}
+.process strong{
+  display:block; 
+  font-family:var(--sans);
+  font-size:16px; margin:10px 0 8px; font-weight:600;
+  letter-spacing:-.01em;
+}
+.process p{
+  color:var(--dim); 
+  font-family:var(--sans);
+  font-size:14px; max-width:30ch; line-height:1.6; font-weight:400;
+}
+
+/* skills — plain word grid */
+.skill-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:14px 4vw}
+.skill{
+  font-family:var(--sans);
+  font-size:14px; padding-bottom:10px; border-bottom:1px solid var(--line);
+  font-weight:500;
+}
+.skill small{
+  display:block; 
+  font-family:var(--mono);
+  color:var(--dim); font-size:9px; letter-spacing:.2em; margin-bottom:4px;
+  font-weight:500;
+}
+
+/* about */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:start}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about h2, .contact h2{
+  font-family:var(--sans);
+  font-size:clamp(30px,4.4vw,56px); line-height:1.05; letter-spacing:-.02em; 
+  font-weight:800;
+}
+.about h2 em, .contact h2 em{font-style:italic; font-weight:300}
+.about p{
+  color:var(--dim); 
+  font-family:var(--sans);
+  font-size:15px; margin-bottom:16px; max-width:none; line-height:1.7;
+  font-weight:400;
+}
+.timeline{
+  display:flex; align-items:center; flex-wrap:wrap; gap:16px;
+  margin-top:5vh;
+  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  font-family:var(--mono);
+  font-size:12px; letter-spacing:.2em; color:var(--dim);
+  font-weight:600;
+  padding:24px 5vw 48px; box-sizing:border-box;
+  border-top:1px solid var(--line);
+}
+.timeline i{flex:1; height:1px; background:var(--line); min-width:24px}
+.timeline span{position:relative; padding:4px 2px; cursor:default; transition-property:color}
+.timeline span:hover, .timeline span:focus-visible{color:var(--ink); outline:none}
+/* text revealed under the year on hover/focus — set via data-detail="..." on each span */
+.timeline span[data-detail]::after{
+  content:attr(data-detail);
+  position:absolute; top:100%; left:50%; transform:translate(-50%,2px);
+  width:max-content; max-width:220px;
+  font-family:var(--sans); font-size:11px; letter-spacing:0; font-weight:400; line-height:1.5;
+  color:var(--dim); background:var(--bg); border:1px solid var(--line);
+  padding:9px 11px; text-align:left;
+  opacity:0; pointer-events:none; z-index:4;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.timeline span[data-detail]:hover::after,
+.timeline span[data-detail]:focus-visible::after{
+  opacity:1; transform:translate(-50%,10px);
+}
+.timeline span[data-detail]:first-child::after{left:0; transform:translate(0,2px)}
+.timeline span[data-detail]:last-child::after{left:auto; right:0; transform:translate(0,2px)}
+.timeline span[data-detail]:first-child:hover::after,
+.timeline span[data-detail]:first-child:focus-visible::after,
+.timeline span[data-detail]:last-child:hover::after,
+.timeline span[data-detail]:last-child:focus-visible::after{transform:translate(0,10px)}
+@media(max-width:640px){
+  .timeline{gap:10px; font-size:10px; padding:20px 6vw 42px}
+  .timeline i{min-width:12px}
+  .timeline span[data-detail]::after{left:0; transform:translate(0,2px); max-width:65vw}
+  .timeline span[data-detail]:hover::after,
+  .timeline span[data-detail]:focus-visible::after{transform:translate(0,10px)}
+}
+
+/* contact */
+.contact{padding:18vh 5vw}
+.contact .eyebrow{
+  justify-content:flex-start;
+  font-family:var(--mono);
+}
+.contact h2{margin:3vh 0 7vh}
+.contact-row{
+  display:flex; justify-content:space-between; align-items:center; 
+  flex-wrap:wrap; gap:14px; 
+  border-top:1px solid var(--line); padding-top:24px;
+}
+.contact-row a{
+  font-family:var(--sans);
+  font-size:clamp(18px,2.6vw,30px); font-weight:600;
+  letter-spacing:-.01em;
+}
+.contact-row a:hover{color:var(--cyan)}
+.contact-row span{
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; color:var(--dim);
+  font-weight:500;
+}
+
+footer{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  padding:24px 5vw; 
+  font-family:var(--mono);
+  font-size:9px; letter-spacing:.2em; color:var(--dim);
+  border-top:1px solid var(--line);
+  font-weight:500;
+}
+
+/* ============ HERO SKY VIZ (stripe-style) ============ */
+.hero-viz{position:absolute; inset:0; z-index:0; overflow:hidden}
+.hero-viz .data-viz{position:absolute; inset:0}
+.hero-viz canvas{display:block; width:100%; height:100%}
+.hero-viz__controls{position:absolute; top:0; right:0; z-index:2}
+.hero > *:not(.hero-viz){position:relative; z-index:1}
+
+.time-of-day-select{position:relative; font-size:10px; letter-spacing:.2em}
+.time-of-day-select__trigger{
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); background:transparent; cursor:pointer;
+  border:1px solid var(--line); padding:7px 12px;
+  transition:color .2s, border-color .2s;
+  font-weight:500;
+}
+.time-of-day-select__trigger:hover{color:var(--ink); border-color:var(--dim)}
+.time-of-day-select__value{color:var(--ink)}
+.time-of-day-select__trigger svg{width:15px; height:15px; overflow:visible}
+.time-of-day-select-icon__sun-group,
+.time-of-day-select-icon__moon{transition:opacity .6s}
+.time-of-day-select-icon__sun-group{opacity:1}
+.time-of-day-select-icon__moon{opacity:.2}
+.time-of-day-select__list{
+  position:absolute; top:calc(100% + 6px); right:0; min-width:130px;
+  list-style:none; background:var(--bg); border:1px solid var(--line);
+  padding:4px 0; display:none; z-index:5;
+}
+.time-of-day-select__list.open{display:block}
+.time-of-day-select__list li{
+  padding:8px 14px; cursor:pointer; color:var(--dim);
+  font-family:var(--mono);
+  text-transform:uppercase; display:flex; justify-content:space-between; gap:12px;
+  font-size:10px; font-weight:500;
+}
+.time-of-day-select__list li:hover{color:var(--ink); background:rgba(0,0,0,.03)}
+.time-of-day-select__list li[aria-selected="true"]{color:var(--ink)}
+.time-of-day-select__list li[aria-selected="true"]::after{content:"●"; font-size:7px; align-self:center; color:var(--cyan)}
+
+/* hero text color now comes straight from the theme (--ink/--dim/--cyan) */
+.hero{transition:color .9s}
+</style>
+
