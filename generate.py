@@ -38,10 +38,18 @@ def build_nav(cfg):
 
 def build_hero(cfg):
     p, hero = cfg["person"], cfg["hero"]
+    tagline = e(p["tagline"])
+    for connector in (" that ", " into "):
+        if connector in tagline:
+            lead_first, lead_emphasis = tagline.split(connector, 1)
+            lead = f'{lead_first}<br><strong>{connector.strip()} {lead_emphasis}</strong>'
+            break
+    else:
+        lead = tagline
     return f"""<div class="eyebrow"><span class="pulse"></span> {e(hero["eyebrow"])}</div>
 <h1>{e(hero["heading"])}<br><em>{e(hero["subheading"])}</em></h1>
 <div class="hero-bottom">
-  <p class="lead">{e(p["tagline"])}</p>
+  <p class="lead">{lead}</p>
   <div class="hero-meta">
     <span>{e(p["location"])}</span>
     <span>01</span>
@@ -91,11 +99,18 @@ def build_approach(cfg):
 
 def build_stack(cfg):
     skills = cfg["sections"]["stack"]["skills"]
-    cells = "\n".join(f"""  <div class="skill">
-    <small>{e(sk["category"])}</small>
-    {e(sk["name"])}
-  </div>""" for sk in skills)
-    return '<div id="skill-grid" class="skill-grid">\n' + cells + "\n</div>"
+    groups = []
+    for category in dict.fromkeys(sk["category"] for sk in skills):
+        items = "".join(
+            f'<span>{e(sk["name"])}</span>'
+            for sk in skills
+            if sk["category"] == category
+        )
+        groups.append(f'''  <div class="skill-group">
+    <div class="skill-category">{e(category)}</div>
+    {items}
+  </div>''')
+    return '<div id="skill-grid" class="skill-grid">\n' + "\n".join(groups) + "\n</div>"
 
 
 def build_about(cfg):

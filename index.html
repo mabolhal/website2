@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mahyar Abolhallaj — Platform &amp; Data Engineer</title>
 <meta name="description" content="Portfolio page generated from config.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQ921QSRR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EQ921QSRR4');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -221,7 +230,7 @@ footer {
 }
 .hero h1 em{font-style:italic; font-weight:300}
 .hero-bottom{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-top:2vh}
-.lead{position:relative; top:-5vh; font-size:16px; color:var(--ink); line-height:1.7; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
+.lead{position:relative; top:-7vh; font-size:16px; color:var(--ink); line-height:1.35; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
 .lead strong{color:var(--ink); font-weight:600}
 .hero-meta{
   display:flex; flex-direction:column; gap:6px;
@@ -301,18 +310,18 @@ footer {
   font-size:14px; max-width:30ch; line-height:1.6; font-weight:400;
 }
 
-/* skills — plain word grid */
-.skill-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:14px 4vw}
-.skill{
-  font-family:var(--sans);
-  font-size:14px; padding-bottom:10px; border-bottom:1px solid var(--line);
+/* skills — grouped by discipline */
+.skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:5vw 4vw}
+.skill-group{display:flex; flex-wrap:wrap; align-content:flex-start; gap:7px}
+.skill-category{
+  flex-basis:100%;
+  font-family:var(--mono);
+  color:var(--dim); font-size:9px; letter-spacing:.2em; margin-bottom:5px;
   font-weight:500;
 }
-.skill small{
-  display:block; 
-  font-family:var(--mono);
-  color:var(--dim); font-size:9px; letter-spacing:.2em; margin-bottom:4px;
-  font-weight:500;
+.skill-group span{
+  font-family:var(--sans);
+  font-size:14px; font-weight:500;
 }
 
 /* about */
@@ -524,7 +533,7 @@ footer{
   <div class="eyebrow"><span class="pulse"></span> PLATFORMS · DATA · INFRASTRUCTURE</div>
 <h1>MAHYAR<br><em>ABOLHALLAJ</em></h1>
 <div class="hero-bottom">
-  <p class="lead">building reliable data platforms that turn complexity into clarity.</p>
+  <p class="lead">I turn complex workflows<br><strong>into reliable, useful systems.</strong></p>
   <div class="hero-meta">
     <span>Platform Engineering</span>
     <span>01</span>
@@ -644,57 +653,29 @@ footer{
 <section id="stack" class="section stack">
   <div class="section-head"><span>03 — ENGINEERING STACK</span></div>
   <div id="skill-grid" class="skill-grid">
-  <div class="skill">
-    <small>PROGRAMMING</small>
-    Python (FastAPI, Pandas)
+  <div class="skill-group">
+    <div class="skill-category">PROGRAMMING</div>
+    <span>Python (FastAPI, Pandas)</span><span>SQL (PostgreSQL, etc.)</span><span>TypeScript / Node.js</span><span>HTML / CSS</span>
   </div>
-  <div class="skill">
-    <small>PROGRAMMING</small>
-    SQL (PostgreSQL, etc.)
+  <div class="skill-group">
+    <div class="skill-category">DATA PLATFORMS</div>
+    <span>Airflow · dbt</span><span>Spark · Beam · Kafka · Flink</span><span>BigQuery · Databricks · Redshift</span>
   </div>
-  <div class="skill">
-    <small>PROGRAMMING</small>
-    TypeScript / Node.js
+  <div class="skill-group">
+    <div class="skill-category">CLOUD</div>
+    <span>GCP · Databricks · Azure · AWS (EC2, Lambda, RDS, S3)</span><span>Terraform · Pulumi</span><span>Docker · Kubernetes · ECS</span>
   </div>
-  <div class="skill">
-    <small>PROGRAMMING</small>
-    HTML / CSS
+  <div class="skill-group">
+    <div class="skill-category">OBSERVABILITY</div>
+    <span>Prometheus · Grafana · Datadog</span>
   </div>
-  <div class="skill">
-    <small>DATA PLATFORMS</small>
-    Airflow · dbt
+  <div class="skill-group">
+    <div class="skill-category">CI/CD</div>
+    <span>Jenkins · Terraform · GitHub Actions · GitLab CI</span>
   </div>
-  <div class="skill">
-    <small>DATA PLATFORMS</small>
-    Spark · Beam · Kafka · Flink
-  </div>
-  <div class="skill">
-    <small>DATA PLATFORMS</small>
-    BigQuery · Databricks · Redshift
-  </div>
-  <div class="skill">
-    <small>CLOUD</small>
-    GCP · Databricks · Azure · AWS (EC2, Lambda, RDS, S3)
-  </div>
-  <div class="skill">
-    <small>CLOUD</small>
-    Terraform · Pulumi
-  </div>
-  <div class="skill">
-    <small>CLOUD</small>
-    Docker · Kubernetes · ECS
-  </div>
-  <div class="skill">
-    <small>OBSERVABILITY</small>
-    Prometheus · Grafana · Datadog
-  </div>
-  <div class="skill">
-    <small>CI/CD</small>
-    Jenkins · Terraform · GitHub Actions · GitLab CI
-  </div>
-  <div class="skill">
-    <small>ARCHITECTURE</small>
-    Event-Driven · Data Mesh · Microservices
+  <div class="skill-group">
+    <div class="skill-category">ARCHITECTURE</div>
+    <span>Event-Driven · Data Mesh · Microservices</span>
   </div>
 </div>
 </section>

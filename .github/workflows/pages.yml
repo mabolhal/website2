@@ -32,6 +32,7 @@ jobs:
           mkdir -p dist
           python assemble.py partials dist/template.html
           python generate.py config.json dist/template.html dist/index.html
+          cp CNAME dist/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
