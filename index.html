@@ -230,8 +230,8 @@ footer {
 }
 .hero h1 em{font-style:italic; font-weight:300}
 .hero-bottom{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-top:2vh}
-.lead{position:relative; top:-7vh; font-size:16px; color:var(--ink); line-height:1.35; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
-.lead strong{color:var(--ink); font-weight:600}
+.lead{position:relative; top:-4vh; font-size:clamp(16px, 1.1vw + 10px, 21px); color:var(--ink); line-height:1.15; letter-spacing:-0.01em; max-width:46ch; font-weight:400;}
+.lead strong{color:var(--ink); font-weight:550}
 .hero-meta{
   display:flex; flex-direction:column; gap:6px;
   font-family:var(--mono);
@@ -393,6 +393,7 @@ footer {
   flex-wrap:wrap; gap:14px; 
   border-top:1px solid var(--line); padding-top:24px;
 }
+.contact-links{display:flex; flex-direction:column; align-items:flex-start; gap:4px}
 .contact-row a{
   font-family:var(--sans);
   font-size:clamp(18px,2.6vw,30px); font-weight:600;
@@ -548,14 +549,14 @@ footer{
   <div class="sys">
     <div class="sys-head">
       <span class="idx">01</span>
-      <h3>CUSTOM FINANCIAL ANALYSIS SOLUTION <a class="sys-link" href="https://www.mahy.dev/" target="_blank" rel="noopener noreferrer" aria-label="Open CUSTOM FINANCIAL ANALYSIS SOLUTION" onclick="event.stopPropagation()">↗</a></h3>
+      <h3>CUSTOM FINANCIAL ANALYSIS SOLUTION</h3>
       <span class="tag">CUSTOM DATA SOLUTIONS</span>
       <span class="plus">+</span>
     </div>
     <div class="sys-body">
       <div class="sys-body-in">
-        <p style="color:var(--ink)">Software Solution to simply output financial analysis reports with custom functions to compare together periods of financial spending.</p>
-        <p>Used to make financial decisions and provide clarity based on transaction data in csv files.</p>
+        <p style="color:var(--ink)">A software Solution to output financial analysis reports with custom functions to compare different periods of financial spending.</p>
+        <p>Used to make financial decisions and provide clarity based on transaction data in CSV files.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">HTML / CSS</span></div>
       </div>
     </div>
@@ -569,8 +570,8 @@ footer{
     </div>
     <div class="sys-body">
       <div class="sys-body-in">
-        <p style="color:var(--ink)">Automated scripting that pulls information from the Flipp application, via the weekly retail fliers, and stores the deals into a CSV.</p>
-        <p>AI is a great tool to analyze information, thus we can find killer deals that are in the brochures this week.</p>
+        <p style="color:var(--ink)">Automated scripting that pulls information from the Flipp application, via the weekly retail flyers, and stores the deals in a CSV.</p>
+        <p>AI is a great tool to analyze information, and thus we can find killer deals that are in this week&#x27;s brochures.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">CSV</span><span class="chip">Selenium</span></div>
       </div>
     </div>
@@ -578,21 +579,6 @@ footer{
   <div class="sys">
     <div class="sys-head">
       <span class="idx">03</span>
-      <h3>FINANCIAL DATA PIPELINE</h3>
-      <span class="tag">DATA ENGINEERING</span>
-      <span class="plus">+</span>
-    </div>
-    <div class="sys-body">
-      <div class="sys-body-in">
-        <p style="color:var(--ink)">A fault-tolerant ETL pipeline that processes millions of financial transactions daily with 99.99% reliability and end-to-end encryption.</p>
-        <p>Replaced fragile cron-based jobs with an event-driven architecture featuring automatic retries, dead-letter queues, and data lineage tracking. Reduced manual intervention from 8+ hours per week to near-zero.</p>
-        <div class="chips"><span class="chip">Airflow</span><span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Redis</span><span class="chip">Prometheus</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="sys">
-    <div class="sys-head">
-      <span class="idx">04</span>
       <h3>STM INTERACTIVE MAP</h3>
       <span class="tag">WEB APP / TRANSIT</span>
       <span class="plus">+</span>
@@ -607,15 +593,15 @@ footer{
   </div>
   <div class="sys">
     <div class="sys-head">
-      <span class="idx">05</span>
+      <span class="idx">04</span>
       <h3>STREAMLINED CONTENT UPLOADER</h3>
       <span class="tag">FACEBOOK / YOUTUBE / TIKTOK</span>
       <span class="plus">+</span>
     </div>
     <div class="sys-body">
       <div class="sys-body-in">
-        <p style="color:var(--ink)">Social media outlets provide API Endpoints to push content (except Tiktok) and we can leverage these to streamline content creation.</p>
-        <p>Scripting that pushes a video, with the option of content modification to have unique fingerprint, to all platforms. For Tiktok, a selenium instance is initiated to upload the video manually.</p>
+        <p style="color:var(--ink)">Social media outlets provide API endpoints to push content (except TikTok) and we can leverage these to streamline content creation.</p>
+        <p>Scripting that pushes a video, with the option of content modification to have unique fingerprint, to all platforms. For TikTok, a selenium instance is initiated to upload the video manually.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">API</span><span class="chip">Selenium</span><span class="chip">Chromium</span></div>
       </div>
     </div>
@@ -690,14 +676,18 @@ footer{
     <p>I believe the best engineers don&#x27;t just write code; they understand the business context, simplify the problem, and build solutions that outlast their own tenure.</p>
   </div>
 </div>
-  <div class="timeline"><span data-detail="Chemical Engineering (University of Waterloo)">2012</span><i></i><span data-detail="First Job in Tech as a Data Analyst">2019</span><i></i><span data-detail="Data Engineer">2020</span><i></i><span data-detail="Upgrading old applications to modern Full stack systems">2023</span><i></i><span data-detail="Data focused Software Engineer">NOW</span></div>
+  <div class="timeline"><span data-detail="Chemical Engineering (University of Waterloo)">2012</span><i></i><span data-detail="First Job in Tech as a data analyst">2019</span><i></i><span data-detail="Data Engineer">2020</span><i></i><span data-detail="Upgrading old applications to modern full-stack systems">2023</span><i></i><span data-detail="Data-focused Software Engineer">NOW</span></div>
 </section>
 
 <section class="contact">
   <div class="eyebrow">OPEN TO NEW OPPORTUNITIES</div>
 <h2>LET&#x27;S BUILD<br><em>SOMETHING USEFUL.</em></h2>
 <div class="contact-row">
-  <a href="mailto:mahyar.hallaj@gmail.com">email ↗</a>
+    <div class="contact-links">
+        <a href="mailto:mahyar.hallaj@gmail.com">email ↗</a>
+        <a href="https://www.linkedin.com/in/mahyar-abolhallaj/" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="https://github.com/mahyar-abolhallaj" target="_blank" rel="noopener noreferrer">github ↗</a>
+    </div>
   <span>MAHYAR ABOLHALLAJ</span>
 </div>
 </section>

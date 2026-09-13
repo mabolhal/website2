@@ -141,7 +141,11 @@ def build_contact(cfg):
     return f"""<div class="eyebrow">{e(c["eyebrow"])}</div>
 <h2>{e(c["heading"])}<br><em>{e(c["subheading"])}</em></h2>
 <div class="contact-row">
-  <a href="mailto:{e(p["email"])}">{e(c["buttonText"])}</a>
+    <div class="contact-links">
+        <a href="mailto:{e(p["email"])}">{e(c["buttonText"])}</a>
+        <a href="{e(p["linkedin"])}" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="{e(p["github"])}" target="_blank" rel="noopener noreferrer">github ↗</a>
+    </div>
   <span>{e(p["name"]).upper()}</span>
 </div>"""
 

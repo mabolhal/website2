@@ -7,6 +7,8 @@
     "tagline": "I turn complex workflows into reliable, useful systems.",
     "location": "Platform Engineering",
     "email": "mahyar.hallaj@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/mahyar-abolhallaj/",
+    "github": "https://github.com/mahyar-abolhallaj",
     "footer": "© 2026"
   },
   "hero": {
@@ -23,24 +25,16 @@
         {
           "name": "CUSTOM FINANCIAL ANALYSIS SOLUTION",
           "tag": "CUSTOM DATA SOLUTIONS",
-          "description": "Software Solution to simply output financial analysis reports with custom functions to compare together periods of financial spending.",
-          "detail": "Used to make financial decisions and provide clarity based on transaction data in csv files.",
-          "chips": ["Python", "HTML / CSS"],
-          "link": "https://www.mahy.dev/"
+          "description": "A software Solution to output financial analysis reports with custom functions to compare different periods of financial spending.",
+          "detail": "Used to make financial decisions and provide clarity based on transaction data in CSV files.",
+          "chips": ["Python", "HTML / CSS"]
         },
         {
           "name": "ULTIMATE SHOPPING",
           "tag": "AI / SCRAPING",
-          "description": "Automated scripting that pulls information from the Flipp application, via the weekly retail fliers, and stores the deals into a CSV.",
-          "detail": "AI is a great tool to analyze information, thus we can find killer deals that are in the brochures this week.",
+          "description": "Automated scripting that pulls information from the Flipp application, via the weekly retail flyers, and stores the deals in a CSV.",
+          "detail": "AI is a great tool to analyze information, and thus we can find killer deals that are in this week's brochures.",
           "chips": ["Python", "CSV", "Selenium"]
-        },
-        {
-          "name": "FINANCIAL DATA PIPELINE",
-          "tag": "DATA ENGINEERING",
-          "description": "A fault-tolerant ETL pipeline that processes millions of financial transactions daily with 99.99% reliability and end-to-end encryption.",
-          "detail": "Replaced fragile cron-based jobs with an event-driven architecture featuring automatic retries, dead-letter queues, and data lineage tracking. Reduced manual intervention from 8+ hours per week to near-zero.",
-          "chips": ["Airflow", "Python", "PostgreSQL", "Docker", "Redis", "Prometheus"]
         },
         {
           "name": "STM INTERACTIVE MAP",
@@ -52,8 +46,8 @@
         {
           "name": "STREAMLINED CONTENT UPLOADER",
           "tag": "FACEBOOK / YOUTUBE / TIKTOK",
-          "description": "Social media outlets provide API Endpoints to push content (except Tiktok) and we can leverage these to streamline content creation.",
-          "detail": "Scripting that pushes a video, with the option of content modification to have unique fingerprint, to all platforms. For Tiktok, a selenium instance is initiated to upload the video manually.",
+          "description": "Social media outlets provide API endpoints to push content (except TikTok) and we can leverage these to streamline content creation.",
+          "detail": "Scripting that pushes a video, with the option of content modification to have unique fingerprint, to all platforms. For TikTok, a selenium instance is initiated to upload the video manually.",
           "chips": ["Python", "API", "Selenium", "Chromium"]
         }
       ]
@@ -112,10 +106,10 @@
       ],
       "timeline": [
         { "year": "2012", "detail": "Chemical Engineering (University of Waterloo)" },
-        { "year": "2019", "detail": "First Job in Tech as a Data Analyst" },
+        { "year": "2019", "detail": "First Job in Tech as a data analyst" },
         { "year": "2020", "detail": "Data Engineer" },
-        { "year": "2023", "detail": "Upgrading old applications to modern Full stack systems" },
-        { "year": "NOW", "detail": "Data focused Software Engineer" }
+        { "year": "2023", "detail": "Upgrading old applications to modern full-stack systems" },
+        { "year": "NOW", "detail": "Data-focused Software Engineer" }
       ]
     },
     "contact": {

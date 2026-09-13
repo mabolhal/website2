@@ -230,8 +230,8 @@ footer {
 }
 .hero h1 em{font-style:italic; font-weight:300}
 .hero-bottom{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; margin-top:2vh}
-.lead{position:relative; top:-7vh; font-size:16px; color:var(--ink); line-height:1.35; letter-spacing:-0.01em; max-width:46ch; font-weight:400}
-.lead strong{color:var(--ink); font-weight:600}
+.lead{position:relative; top:-4vh; font-size:clamp(16px, 1.1vw + 10px, 21px); color:var(--ink); line-height:1.15; letter-spacing:-0.01em; max-width:46ch; font-weight:400;}
+.lead strong{color:var(--ink); font-weight:550}
 .hero-meta{
   display:flex; flex-direction:column; gap:6px;
   font-family:var(--mono);
@@ -393,6 +393,7 @@ footer {
   flex-wrap:wrap; gap:14px; 
   border-top:1px solid var(--line); padding-top:24px;
 }
+.contact-links{display:flex; flex-direction:column; align-items:flex-start; gap:4px}
 .contact-row a{
   font-family:var(--sans);
   font-size:clamp(18px,2.6vw,30px); font-weight:600;
