@@ -25,7 +25,7 @@
         {
           "name": "CUSTOM FINANCIAL ANALYSIS SOLUTION",
           "tag": "CUSTOM DATA SOLUTIONS",
-          "description": "A software Solution to output financial analysis reports with custom functions to compare different periods of financial spending.",
+          "description": "A software solution to output financial analysis reports with custom functions to compare different periods of financial spending.",
           "detail": "Used to make financial decisions and provide clarity based on transaction data in CSV files.",
           "chips": ["Python", "HTML / CSS"]
         },
