@@ -88,11 +88,11 @@
         { "category": "DATA PLATFORMS", "name": "Spark · Beam · Kafka · Flink" },
         { "category": "DATA PLATFORMS", "name": "BigQuery · Databricks · Redshift" },
         { "category": "CLOUD", "name": "GCP · Databricks · Azure · AWS (EC2, Lambda, RDS, S3)" },
-        { "category": "CLOUD", "name": "Terraform · Pulumi" },
+        { "category": "CLOUD", "name": "Terraform" },
         { "category": "CLOUD", "name": "Docker · Kubernetes · ECS" },
         { "category": "OBSERVABILITY", "name": "Prometheus · Grafana · Datadog" },
         { "category": "CI/CD", "name": "Jenkins · Terraform · GitHub Actions · GitLab CI" },
-        { "category": "ARCHITECTURE", "name": "Event-Driven · Data Mesh · Microservices" }
+        { "category": "ARCHITECTURE", "name": "Event-Driven · Microservices" }
       ]
     },
     "about": {
