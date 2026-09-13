@@ -188,7 +188,10 @@ footer {
   display:flex; justify-content:space-between; align-items:center;
   padding:26px 5vw;
   font-family:var(--mono);
+  position:absolute; top:0; left:0; width:100%; z-index:3;
+  background:transparent; pointer-events:none;
 }
+.nav > *{pointer-events:auto}
 .logo{font-size:13px; letter-spacing:.14em; font-weight:700}
 .logo span{color:var(--dim)}
 .nav nav{display:flex; gap:26px}
@@ -416,11 +419,11 @@ footer{
   font-family:var(--mono);
   font-size:10px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--dim); background:transparent; cursor:pointer;
-  border:1px solid var(--line); padding:7px 12px;
-  transition:color .2s, border-color .2s;
+  border:0; padding:8px 13px;
+  transition:color .2s;
   font-weight:500;
 }
-.time-of-day-select__trigger:hover{color:var(--ink); border-color:var(--dim)}
+.time-of-day-select__trigger:hover{color:var(--ink)}
 .time-of-day-select__value{color:var(--ink)}
 .time-of-day-select__trigger svg{width:15px; height:15px; overflow:visible}
 .time-of-day-select-icon__sun-group,
